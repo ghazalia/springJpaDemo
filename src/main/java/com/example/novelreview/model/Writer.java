@@ -10,10 +10,10 @@ public class Writer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
     @Column(name = "email")
@@ -61,4 +61,5 @@ public class Writer {
     public void setNovels(List<Novel> novels) {
         this.novels = novels;
     }
+
 }

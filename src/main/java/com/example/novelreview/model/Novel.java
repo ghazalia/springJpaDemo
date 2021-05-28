@@ -4,24 +4,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="novel")
+@Table(name = "novel")
 public class Novel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="writer_id", referencedColumnName = "id")
+    @JoinColumn(name = "writer_id", referencedColumnName = "id")
     private Writer writer;
-
-    @Column(name = "phone", unique = true)
-    private String phone;
-
-    @Column(name="email", unique = true)
-    private String email;
 
     @ManyToMany
     private List<Reviewer> reviewed_by;
@@ -53,19 +47,4 @@ public class Novel {
         this.writer = writer;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
