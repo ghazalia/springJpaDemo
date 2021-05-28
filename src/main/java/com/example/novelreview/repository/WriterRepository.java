@@ -1,5 +1,6 @@
-package com.example.novelreview.model;
+package com.example.novelreview.repository;
 
+import com.example.novelreview.model.Writer;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
