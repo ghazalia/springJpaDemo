@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "writer")
-public class Writer {
+@Table(name="novel")
+public class Novel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -13,14 +13,21 @@ public class Writer {
     @Column(name="name")
     private String name;
 
-    @Column(name="phone")
+    @ManyToOne
+    @JoinColumn(name="writer_id", referencedColumnName = "id")
+    private Writer writer;
+
+    @Column(name = "phone", unique = true)
     private String phone;
 
-    @Column(name = "email")
+    @Column(name="email", unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "writer")
-    private List<Novel> novels;
+    @ManyToMany
+    private List<Reviewer> reviewed_by;
+
+    @OneToMany(mappedBy = "novel")
+    private List<Review> reviews;
 
     public Integer getId() {
         return id;
@@ -38,6 +45,14 @@ public class Writer {
         this.name = name;
     }
 
+    public Writer getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Writer writer) {
+        this.writer = writer;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -52,13 +67,5 @@ public class Writer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Novel> getNovels() {
-        return novels;
-    }
-
-    public void setNovels(List<Novel> novels) {
-        this.novels = novels;
     }
 }

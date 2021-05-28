@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "writer")
-public class Writer {
+@Table(name = "reviewer")
+public class Reviewer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -13,14 +13,14 @@ public class Writer {
     @Column(name="name")
     private String name;
 
-    @Column(name="phone")
+    @Column(name = "phone", unique = true)
     private String phone;
 
-    @Column(name = "email")
+    @Column(name="email", unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "writer")
-    private List<Novel> novels;
+    @OneToMany(mappedBy = "reviewer")
+    private List<Review> reviews;
 
     public Integer getId() {
         return id;
@@ -54,11 +54,11 @@ public class Writer {
         this.email = email;
     }
 
-    public List<Novel> getNovels() {
-        return novels;
+    public List<Review> getReviews() {
+        return reviews;
     }
 
-    public void setNovels(List<Novel> novels) {
-        this.novels = novels;
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
