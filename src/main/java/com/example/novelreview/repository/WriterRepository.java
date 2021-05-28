@@ -13,4 +13,7 @@ public interface WriterRepository extends CrudRepository<Writer, Integer> {
 
     @Query("Select w from Writer w where w.name like %:name% order by w.name ASC ")
     List<Writer> searchByNameLike(@Param("name") String name);
+
+    @Query("Select w from Writer w where upper(w.name) like %:writerName% order by w.name ASC " )
+    List<Writer> findByNameIgnoreCaseIn(@Param("writerName") String writerName);
 }
